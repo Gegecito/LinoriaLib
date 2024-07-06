@@ -1281,7 +1281,7 @@ do
             end;
         end);
 
-        Library:GiveSignal(InputService.InputBegan:Connect(function(Input)
+        Library:GiveSignal(InputService.InputBegan:Connect(function(Input, gameProcessedEvent)
             if (not Picking) then
                 if KeyPicker.Mode == 'Toggle' then
                     local Key = KeyPicker.Value;
@@ -1292,7 +1292,7 @@ do
                             KeyPicker.Toggled = not KeyPicker.Toggled
                             KeyPicker:DoClick()
                         end;
-                    elseif Input.UserInputType == Enum.UserInputType.Keyboard then
+                    elseif Input.UserInputType == Enum.UserInputType.Keyboard and (not gameProcessedEvent) then
                         if Input.KeyCode.Name == Key then
                             KeyPicker.Toggled = not KeyPicker.Toggled;
                             KeyPicker:DoClick()
